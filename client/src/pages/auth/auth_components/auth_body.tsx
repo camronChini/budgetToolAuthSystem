@@ -48,7 +48,9 @@ export default function AuthBody({setUser} : AuthBodyProps){
 
         else if(state === "register"){
             try{
-
+                const res = await axios.post("http://localhost:5000/api/auth/register",{email,password,username});
+                setUser(res.data.user);
+                navigate("/");
             }
             catch(err){
                 setError("Registration failed");
