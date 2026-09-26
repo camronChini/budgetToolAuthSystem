@@ -1,10 +1,15 @@
 import jwt from 'jsonwebtoken'
 import pool from '../config/db.js'
 
+//protect is middleware for routes that require someone to be logged in
+
 export const protect = async(req,res,next) => {
     try
     {
         const token = req.cookies.token;
+        
+        //checks if a token exists and then if it is valid with jwt.verify
+        //then makes sure user actually exists
 
         if(!token){
             return res.status(401).json({message: "Not authorised, no token."})

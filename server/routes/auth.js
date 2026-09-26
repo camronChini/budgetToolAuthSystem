@@ -7,7 +7,9 @@ import {protect} from '../middleware/auth.js'
 const router = express.Router();
 
 const cookieOptions = {
+    //httpOnly means frontend js can't grab the JWT cookie
     httpOnly: true,
+    //in production only https
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'Strict',
     maxAge: 30 * 24 * 60 * 60 * 1000, //30 days
